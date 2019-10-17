@@ -1,0 +1,20 @@
+install:
+  - curl -LO https://github.com/gohugoio/hugo/releases/download/v0.55.4/hugo_0.55.4_Linux-64bit.deb
+  - sudo dpkg -i hugo_0.55.4_Linux-64bit.deb
+
+stages:
+  - name: build
+
+jobs:
+  include:
+    - stage: build
+      script:
+        - hugo -s
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+        keep_history: false
+        local_dir: public
+        on:
+          branch: master
