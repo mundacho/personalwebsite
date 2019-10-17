@@ -1,4 +1,4 @@
-baseurl = "http://edmundo.lopezbobeda.net"
+baseurl = "https://edmundo.lopezbobeda.net"
 title = "mundacho's website"
 theme = "hugo-coder"
 languagecode = "en"
