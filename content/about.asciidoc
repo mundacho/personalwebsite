@@ -1,0 +1,11 @@
++++
+title = "About me"
+description = "Scala Development/MDE Expert"
+date = "2019-10-17"
+aliases = ["about-us","about-hugo","contact"]
+author = "Edmundo López B."
++++
+
+I'm a software developer based in Santa Cruz, Bolivia. 
+
+I'm interested in: Model Driven Engineering, DSLs, Language Engineering, Projectional Editors; Formal methods, Functional programming, practical business applications of the aforementioned technologies, especially financial services. My favourite languages are Java and Scala.

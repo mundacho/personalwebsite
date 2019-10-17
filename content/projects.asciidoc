@@ -1,0 +1,6 @@
++++
+title = "Personal projects"
+description = "Some personal projects"
+date = "2019-10-17"
+author = "Edmundo López B."
++++
