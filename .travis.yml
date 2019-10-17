@@ -9,7 +9,7 @@ jobs:
   include:
     - stage: build
       script:
-        - hugo -s
+        - hugo
       deploy:
         provider: pages
         skip_cleanup: true
