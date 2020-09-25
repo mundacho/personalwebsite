@@ -1,0 +1,244 @@
+---
+title:  "Intro to Scala for Java Programmers: Part 1"
+date: "2020-09-25"
+---
+
+The goal of this article series is to introduce Scala to people who know how to program in Java
+and want a fast introduction to the Scala language in order to be capable of
+reading (simple) Scala code and of course, understanding it. In part 1 we focus
+on the main language constructs for procedural programming: variable
+declarations, control structures, function definitions.
+
+## Variable declaration
+
+In Scala there are two ways to declare a variable, with the keyword `val` and
+with the keyword `var`.
+
+For example, we can declare the variable `toto0` like this:
+
+``` scala
+val toto0 = 1
+```
+
+Or like this:
+
+``` scala
+var toto1 = 1
+```
+
+In both cases we are declaring a variable of type `Int`. The difference between
+both declarations is that the `val` declaration declares a constant,
+this is, the variable cannot be reassigned after its initial definition. On the
+other hand, the `var` variable can be reassigned a new value.
+
+If you come from Java, you the same declarations in Java would be like this:
+
+``` java
+// val toto0 = 1
+final int toto0 = 1;
+// var toto1 = 1
+int toto0 = 1;
+```
+
+### Typing in Scala
+
+If you come from Java and other strongly typed languages, you might have noticed that
+Scala variable declarations lack a type. However, there is actually a type, but
+it is inferred from the context. Scala has type inference, this is, the compile
+will try to infer the type of the variable and you don't have to type it (most
+of the time.
+
+Of course, there are times when the compiler cannot infer the type or sometimes
+you just want to have the type explicitly to make things clear to the readers of
+the code. For this purpose Scala has the `:` (colon). The colon pronounced "is
+of type". Let us look at some examples:
+
+
+``` scala
+// we can define our same variable but specifying the type
+val toto0: Int = 1
+```
+
+The aforementioned code is read as "constant `toto0` is of type integer and has
+assigned value 1".
+
+Contrary to some other languages once a variable has a certain type, it stays
+with that type for the rest of its existence.  Hence, Scala is a *strongly
+typed* language.
+
+## Predefined Operations and Types
+
+Scala comes with a standard library containing common types and operations. To
+simplify, we present the different Scala types together with their Java
+counterparts:
+
+| Java     |    Scala         |  Scala Example         | Possible values                                            |
+| :----:   | :-------------:  | :--------------------: | :---------------------------------------:                  |
+|  byte    |      Byte        | `val b: Byte = 1`      | $-2^7$ to $2^7 - 1$                                        |
+|  short   |      Short       | `val s: Short = 1`     | $-2^{15}$ to $2^{15} - 1$                                  |
+|  char    |      Char        | `val c = 'c'`          | All Unicode characters.                                    |
+|  int     |      Int         | `val i = 1`            | $-2^{31}$ to $2^{31} - 1$                                  |
+|  long    |      Long        | `val l = 1L`           | $-2^{63}$ to $2^{63} - 1$                                  |
+|  float   |      Float       | `val f = 1.5f`         | All IEEE 754 32 bit single precision floating point values |
+|  double  |      Double      | `val d = 1.5`          | All IEEE 754 64 bit double precision floating point values |
+|  boolean |      Boolean     | `val b = true`         | $\lbrace$ `true`, `false` $\rbrace$                        |
+|  void    |      Unit        | `val u = ()`           | $\lbrace$ `()` $\rbrace$                                   |
+
+Table 1: List of Scala Value Types
+
+
+The one type that deserves an explanation is the Unit type. The unit type only
+has one possible value, written as `()`. It is used as the return type for
+[subroutines](https://en.wikipedia.org/wiki/Subroutine) that do not return a
+value. For example, when we call `println` to print a line in Scala it returns a
+unit type, we can see an example here:
+
+``` scala
+val r = println("Hello!")
+```
+
+By using the unit type, Scala guarantees that all
+[subroutines](https://en.wikipedia.org/wiki/Subroutine) are functions, *i.e.*
+they always return a value.
+
+### Basic Operations
+
+The standard numeric data types supported by Scala that we previously shown
+support the usual arithmetic operations that we expect them to. Scala supports
+all the following operations between numeric types (`byte`, `short`, `int`,
+`long`, `float`, `double`): `+`, `-`, `*`, `/`, and `%`. The `%` is the modulus
+operator, used as follows `a % b` and returns the remainder of dividing `a` by
+`b`, for example `10 % 3` is equal to `1`.
+
+The following relational operators `==`, `!=` (not equal), `>`, `>=` (greater or equal),
+`<`, `<=` (less or equal) are also supported by Scala with their usual semantics
+for numeric types. Contrary to Java, the `==` operator actually calls the equals
+method when applied to two objects that are not numerical. To have the same
+semantics as Java `==` and `!=` we need to use the `eq` and `ne` operators
+respectively.
+
+For Boolean data types Scala supports the classical logical operators `&&`
+(logical and), `||` (logical or), and `!` (logical negation), that return a
+Boolean value depending on the result of the comparison.
+
+In addition to that, in the same style as Java, Scala supports the assignment
+and operation combination, that allows to apply and operation and the assign the
+value to a variable in one compact operation. The operators supported are `+=`
+(add and assign), `-=` (subtract and assign), `*=` (multiply and assign), `/=`
+and assign, `/=` (divide and assign), and `%=` (modulus and assign). F
+
+``` scala
+var x = 5
+x += 2
+// x = 7
+var y = 10
+y %= 3
+// y = 1
+```
+
+## Control Structures
+
+Scala provides the standard control structures usually found in other languages.
+Here we focus on the ones that are shared with Java, highlighting Scala's
+particularities.
+
+The fundamental building block for control is the well known `if-else`
+statement. In Scala, the particularity of the `if-else` statement is that it is
+a function, *i.e.* it returns a value. Let's consider the following example
+
+``` scala
+val a = 5
+if (a > 1) 4 else 1
+```
+
+The statement above returns an actual value, the value 4 (since `a > 1`). This
+means that, in Scala we can assign an `if`-block to a variable or use it where
+we would expect some value. For example:
+
+``` scala
+val a = 5
+val b = if (a > 1) 4 else 1
+// b = 4
+```
+
+The question that you might be asking is "What happens when there is no
+`else`?", what is returned then? The answer is simple, the unit value. Let's
+consider the following code:
+
+``` scala
+val x = if (false) 5
+// x: AnyVal = ()
+```
+As you can see, after the execution variable `x` contains the value `()`, but
+the type of `x` is `AnyVal`, a type that is the super type of all types listed
+in Table 1. Hence, we can see that the compiler inferred the return type of the
+`if` expression as `AnyVal`.
+
+Scala also support classic loop instructions such as `while`, `do-while`, and
+`for`. The `while` and `do-while` work exactly as expected. Let's consider the
+following loop:
+
+``` scala
+var x = 3
+while (x > 0) {
+  println(x)
+  x=x-1
+}
+```
+This loop will print all numbers from 3 to 1. We can do the exact same loop
+using the `do-while` construct:
+
+``` scala
+var x = 3
+do {
+  println(x)
+  x -= 1
+} while (x > 0)
+```
+
+Following the Scala convention, both of these operations return a value, the
+unit value `()`, which makes them pretty boring.
+
+## Function Definitions
+
+Having learned how to type things in Scala, we can move to more behavioral stuff,
+like functions. The definition of a function in Scala is done with the `def`
+keyword, followed by the function name, the list of arguments, the `=` sign and
+the actual function body. A simple Scala function looks like this:
+
+``` scala
+def add(x: Int, y: Int) = x + y
+```
+
+Here we can find the colon that we already met in the last section. It is there
+to inform the compiler that `x` and `y` are parameters of type `Int`. Of course,
+we can do more complex functions using Scala. For example, we can have a block
+of statements with variable definitions, function calls, and everything that you
+can have in other common programming languages, the syntax for that is the
+following:
+
+``` scala
+def complexFct(x: Int, y: Int) = {
+  val operand1 = x
+  val operand2 = y
+  operand1 + operand2
+}
+```
+
+You might have noticed that the function does not have a return type, like you
+would have in other languages. Like variable definitions, function return types
+are inferred by the compiler, thus you (usually) don't need to tell the compiler
+the return type of a function. A notable exception for this are recursive
+functions, which always require the programmer to properly specify the return
+type, let's look at an example for the factorial function $n! = n \cdot (n - 1)
+\cdots 2 \cdot 1$. This function is easily defined in Scala as:
+
+``` scala
+def fact(n: Int): Int = if (n > 1) n * fact(n - 1) else 1
+```
+
+## Conclusion
+
+We have seen the basics of the Scala language. Using the knowledge we have we
+can write simple programs by using scalar types, simple arithmetic operations
+and function definitions.
