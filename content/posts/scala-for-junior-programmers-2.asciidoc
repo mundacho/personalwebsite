@@ -1,0 +1,313 @@
+---
+title: "Intro to Scala for Java Programmers: Part 2"
+date: "2020-10-02"
+draft: true
+---
+
+
+In [our previous post]({{< ref "/posts/scala-for-junior-programmers-1" >}}) in
+this series we introduced the very basics of Scala. In this post we focus on
+Scala data structures.
+
+## Case Classes
+
+As a Java programmer you might be accustomed to classes that can encapsulate both
+data and operations. Scala offers fully featured classes but in this section we
+are focusing on a subset of standard classes: *case classes*.
+
+Let us define a simple class for bidimentional vectors:
+
+``` scala
+case class Vector(x: Int, y: Int)
+```
+
+This case class can be written in Java as follows:
+
+``` java
+final class Vector {
+
+  public final Integer x;
+  public final Integer y;
+
+  Vector(Integer x, Integer y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  @Override
+  String toString() {
+    return "Vector(" + x + ", " + y + ")";
+  }
+
+  @Override
+  boolean equals(Object o) {
+    if (o instanceof Vector) {
+      return (x.equals(o.x) && y.equals(o.y));
+    } else {
+      return false;
+    }
+  } 
+
+  @Override
+  boolean hashCode() {
+    // standard hash code implementation
+  } 
+}
+```
+
+As you can see the case class is like a standard Java class but has a particular implementation.
+
+- It is a final class.
+- The class's members are both public and final.
+- The `toString` method is implemented by default with the name of the class, followed by an array of parameters in paremtheses.
+- The `equals` and `hashCode` methods have a default implementation.
+
+Using case classes we can also define methods. Methods are defined just like
+the functions we saw in [the previous post]({{< ref "/posts/scala-for-junior-programmers-1" >}}).
+
+Let us define a method to add two vectors:
+
+``` scala
+case class Vector(x: Int, y: Int) {
+  def + (v: Vector) = Vector(x + v.x, y + v.y)
+}
+```
+
+Let us consider this definition. First, the name of the method is `+`. Indeed, in
+Scala method names can be any identifier, and identifiers can be of three forms:
+
+- a letter followed by an arbitrary sequence of letters and digits, for example
+  `normalIdentifier`
+- an identifier as defined before followed by an underscore `_` and another
+  string another string composed of either letters and digits or of operator
+  characters, for example `x_=`.
+- an operator followed by an arbitrary sequence of operator characters for
+  example `+`, or `+=`.
+
+
+The other particularity that you might notice when coming from Java is that the
+creation of the new `Vector` does not include the keyword `new`, which is a
+feature of case classes. To create a new instance it is not necessary to use the
+keyword `new`. Normal Scala classes (as we will see in a later post) require the
+usage of the `new` keyword.
+
+## Scala traits
+
+We have seen Scala case classes, that are like their Java counterparts but much
+more compacts. Let us now learn about the Scala counterpart of Java interfaces.
+
+Scala has its own version of interfaces called `trait`. A trait is like a Java
+interface but it has some extra features. The simplest trait can be defined as
+follows:
+
+``` scala
+trait MyTrait
+```
+
+A trait can contain methods (implemented or not), and also variables. Let us look
+at an example:
+
+``` scala
+import scala.math.sqrt
+
+trait SimpleFigure {
+
+  val height: Int
+  val width: Int
+
+  def area(): Double = height * width
+
+  def perimeter(): Double
+
+}
+
+case class Square(height: Int, width: Int) extends SimpleFigure {
+  override def perimeter(): Double = 2 * height + 2 * width
+}
+
+case class IsoscelesTriangle(height: Int, width: Int) extends SimpleFigure {
+
+  override def area(): Double = height * width / 2.0
+
+  override def perimeter(): Double = width + 2 * sqrt(width * width / 4.0 + height * height)
+
+}
+```
+
+Let us start with the first `trait` definition. The `trait` defines two constants
+(`val`), one function with a default implementation, and another function whose
+definition is left to the subclasses.
+
+Now, contrary to Java, Scala uses the `extends` keyword instead of `implements`. The
+syntax is the one showed in the aforementionned example. In our example, we
+have two case classes that extend the `SimpleFigure` class. For the `Square`
+class we have that it takes the default implementation for `area` method from the trait, but the
+`IsoscelesTriangle` overrides it with its own implementation. However, the
+`perimeter()` method is not implemented in the trait, thus each class needs to
+provide an implementation. This behaviour is the same that we find in Java
+interfaces.
+
+## Scala Objects
+
+As we know from Java, sometimes we need a singleton or some methods that just
+don't belong to any class. Where Java has static methods, Scala has `object`
+types.
+
+As you have already seen, Scala tries to remove edge cases (*e.g.* instead of having
+some subroutines that don't return a value and other subroutines that return a
+value, it has functions that always return a value). For the case of static
+methods in Java, which more or less don't belong into the object oriented
+paradigm, Scala provides `object` types. 
+
+Object types are singletons. In our
+previous example we can create a new type of `SimpleFigure`: the dot. As we
+know, all dots are equal, height, width, perimiter, and area are all `0`. 
+
+So, since we know that there is only one possible instance for the dot, we can
+then create this instance as an object, and by definition it will be a
+singleton:
+
+``` scala
+object Dot extends SimpleFigure {
+
+  val height: Int = 0
+  val width: Int = 0
+
+  override def area(): Double = o
+
+  override def perimeter(): Double = 0
+
+}
+```
+The syntax to declare an `object` is the same as the definition of a class,
+except for the fact that it uses the keyword `object` instead of class. 
+
+## Pattern Matching
+
+Until now, we have seen that Scala is a sort of Java with more compact syntax
+and type inference, but the features are more or less the same. Now we will
+introduce a language feature that allows us to profit from case classes and
+objects.
+
+Pattern matching is a feature that allows the extraction of data from case
+classes by matching a expression with the case class constructor. Let us
+consider the `OptionInt` type defined below:
+
+``` scala
+trait OptionInt
+
+case class SomeInt(n: Int) extends OptionInt
+
+object NoInt extends OptionInt
+```
+
+This data type allows us to represent a value that might not be there, 
+like the Java optional type (in Scala we can have generics but we will be seeing
+them in the next section). We can then extract the value of such a type using pattern matching
+as follows:
+
+``` scala
+def containsInteger(someInteger: OptionInt): Boolean = someInteger match {
+  case SomeInt(n) => true
+  case NoInt      => false
+}
+```
+
+In this example, without defining any method in the object we can check if a value of type
+`OptionInt` contains an integer or not. Your inner Java programmer may be
+thinking that the way you would do this is something like this:
+
+``` scala
+trait OptionInt {
+  def containsInteger(): Boolean
+}
+
+case class SomeInt(n: Int) extends OptionInt {
+  override def containsInteger() = true
+}
+
+object NoInt extends OptionInt {
+  override def containsInteger() = true
+}
+```
+
+This is, in fact the object oriented solution, which is natural in Java. The
+solution using pattern matching is a *functional programming* (for lack of a better
+term) solution, which would be more natural in functional programming
+languages. Since Scala is an hibrid of both worlds, both solutions are equally
+valid.
+
+The advantage of the object oriented solution is that extending it by adding a new data
+type (a new clase class for example) is very straightforward, you just need to
+add a class and you don't need to modify anything else, however, to add a new
+operation, you need to modify all classes to add the new operation. The
+functional programming solution on the other hand makes adding a new operation
+very easy, but adding a new type requires modifying all existing operations (for
+more on this topic see [the expression problem](https://en.wikipedia.org/wiki/Expression_problem)).
+
+Pattern matching is a fundamental tool in the toolbox of Scala programmers. We
+will see more of it as we progress in this course.
+
+## Parametric Classes
+
+The `OptionInt` class surely let you with a bad
+taste in the mouth, since you know that you can define the same class in Java
+using generics.
+
+Scala offers parametric classes too, and much more powerful than its Java
+counterpart, but we will keep it simple for the moment. The thing to remember is
+that you can redefine the `OptionInt` function to be *generic* in the following
+way:
+
+``` scala
+trait MyOption[+A] {
+  def containsInteger(): Boolean
+}
+
+case class MySome[A](n: A) extends MyOption[A] {
+  override def containsInteger() = true
+}
+
+object MyNone extends MyOption[Nothing] {
+  override def containsInteger() = true
+}
+```
+
+Basically instead of using `MyOption<A>` like you'd create in Java, you have
+`MyOption[A]`, and that's it. We can notice two particularities in this code:
+
+- the `+` before the type parameter `A`
+- the `Nothing` type as parameter for `MyOption` in the definition of `MyNone`
+
+Let us first consider the `Nothing`. The best way to understand the `Nothing`
+type is in the same way that we understand the `Unit` type. It is a special type
+to catch corner cases. The `Nothing` has two interesting properties:
+
+- it has no valid value, i.e. you cannot have a value of type `Nothing`
+- it is a subtype of all other Scala types
+
+To understand the importance of this, let us consider the `+` that appears
+there before the type parameter `A`. This is to indicate that the type `MyOption[A]` is a variant
+type. Contrary to Java, where generics are invariant, Scala support variant,
+covariant, and invariant types. We leave covariant for another post and assume
+that you know what invariants are from Java. A variant type means that if type `B` is a
+subtype of `B`, then  parametric types `Type[B]` is a subtype of parametric type
+`Type[A]`. This is important because it implies the following: since `Nothing`
+is subtype of `A` (for all `A`), then `MyOption[Nothing]` is subtype of
+`MyOption[A]` (foll all possible types `A`). This makes possible to write code like this:
+
+``` scala
+val x: MyOption[Int]= MyNone
+val y: MyOption[String]= MyNone
+val z: MyOption[Double]= MyNone
+```
+
+As you can see, `MyNone` can be used independently of the type contained by the
+`MyOption` type. 
+
+## Conclusion
+
+We have seen case classes, objects, pattern matching and a short introduction to
+parametric types in Scala. These functionality is very close to Java, but you
+should start to see where Scala is different and the different types of
+programming styles that it enables you to use. 
