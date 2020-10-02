@@ -156,7 +156,9 @@ As you have already seen, Scala tries to remove edge cases (*e.g.* instead of ha
 some subroutines that don't return a value and other subroutines that return a
 value, it has functions that always return a value). For the case of static
 methods in Java, which more or less don't belong into the object oriented
-paradigm, Scala provides `object` types. 
+paradigm, Scala provides `object` types. Here we focus on `case object` s which,
+like case classes also provide a default `hashCode` and an
+improved `toString` implementation.
 
 Object types are singletons. In our
 previous example we can create a new type of `SimpleFigure`: the dot. As we
@@ -197,7 +199,7 @@ trait OptionInt
 
 case class SomeInt(n: Int) extends OptionInt
 
-object NoInt extends OptionInt
+case object NoInt extends OptionInt
 ```
 
 This data type allows us to represent a value that might not be there, 
@@ -225,7 +227,7 @@ case class SomeInt(n: Int) extends OptionInt {
   override def containsInteger() = true
 }
 
-object NoInt extends OptionInt {
+case object NoInt extends OptionInt {
   override def containsInteger() = true
 }
 ```
@@ -267,7 +269,7 @@ case class MySome[A](n: A) extends MyOption[A] {
   override def containsInteger() = true
 }
 
-object MyNone extends MyOption[Nothing] {
+case object MyNone extends MyOption[Nothing] {
   override def containsInteger() = true
 }
 ```
