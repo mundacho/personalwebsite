@@ -1,7 +1,6 @@
 ---
 title: "Intro to Scala for Java Programmers: Part 2"
 date: "2020-10-02"
-draft: true
 ---
 
 
