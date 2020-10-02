@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://edmundo.lopezbobeda.net/posts/scala-for-junior-programmers-2/</loc>
+    <lastmod>2020-10-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://edmundo.lopezbobeda.net/</loc>
+    <lastmod>2020-10-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://edmundo.lopezbobeda.net/posts/</loc>
+    <lastmod>2020-10-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://edmundo.lopezbobeda.net/posts/scala-for-junior-programmers-1/</loc>
+    <lastmod>2020-09-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://edmundo.lopezbobeda.net/posts/my-first-post/</loc>
+    <lastmod>2019-10-17T14:26:15-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://edmundo.lopezbobeda.net/about/</loc>
+    <lastmod>2019-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://edmundo.lopezbobeda.net/projects/</loc>
+    <lastmod>2019-10-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://edmundo.lopezbobeda.net/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://edmundo.lopezbobeda.net/tags/</loc>
+  </url>
+  
+</urlset>

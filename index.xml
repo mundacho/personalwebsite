@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mundacho&#39;s website</title>
+    <link>https://edmundo.lopezbobeda.net/</link>
+    <description>Recent content on mundacho&#39;s website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 02 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://edmundo.lopezbobeda.net/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Intro to Scala for Java Programmers: Part 2</title>
+      <link>https://edmundo.lopezbobeda.net/posts/scala-for-junior-programmers-2/</link>
+      <pubDate>Fri, 02 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edmundo.lopezbobeda.net/posts/scala-for-junior-programmers-2/</guid>
+      <description>In our previous post in this series we introduced the very basics of Scala. In this post we focus on Scala data structures.
+Case Classes As a Java programmer you might be accustomed to classes that can encapsulate both data and operations. Scala offers fully featured classes but in this section we are focusing on a subset of standard classes: case classes.
+Let us define a simple class for bidimentional vectors:</description>
+    </item>
+    
+    <item>
+      <title>Intro to Scala for Java Programmers: Part 1</title>
+      <link>https://edmundo.lopezbobeda.net/posts/scala-for-junior-programmers-1/</link>
+      <pubDate>Fri, 25 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://edmundo.lopezbobeda.net/posts/scala-for-junior-programmers-1/</guid>
+      <description>The goal of this article series is to introduce Scala to people who know how to program in Java, and want a fast introduction to the Scala language in order to be capable of reading (simple) Scala code and of course, understanding it. In part 1 we focus on the most basic constructs like variable declarations, control structures, function definitions.
+Variable declaration In Scala there are two ways to declare a variable, with the keywords val and var.</description>
+    </item>
+    
+    <item>
+      <title>My First Post</title>
+      <link>https://edmundo.lopezbobeda.net/posts/my-first-post/</link>
+      <pubDate>Thu, 17 Oct 2019 14:26:15 -0400</pubDate>
+      
+      <guid>https://edmundo.lopezbobeda.net/posts/my-first-post/</guid>
+      <description>This is my first post.</description>
+    </item>
+    
+    <item>
+      <title>About me</title>
+      <link>https://edmundo.lopezbobeda.net/about/</link>
+      <pubDate>Thu, 17 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://edmundo.lopezbobeda.net/about/</guid>
+      <description>I&amp;rsquo;m a software developer based in Santa Cruz, Bolivia.
+I&amp;rsquo;m interested in: Model Driven Engineering, DSLs, Language Engineering, Projectional Editors; Formal methods, Functional programming, practical business applications of the aforementioned technologies, especially financial services. My favourite languages are Java and Scala.</description>
+    </item>
+    
+    <item>
+      <title>Personal projects</title>
+      <link>https://edmundo.lopezbobeda.net/projects/</link>
+      <pubDate>Thu, 17 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://edmundo.lopezbobeda.net/projects/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

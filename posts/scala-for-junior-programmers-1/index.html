@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <meta name="author" content="Edmundo López Bóbeda">
+    <meta name="description" content="The goal of this article series is to introduce Scala to people who know how to program in Java, and want a fast introduction to the Scala language in order to be capable of reading (simple) Scala code and of course, understanding it. In part 1 we focus on the most basic constructs like variable declarations, control structures, function definitions.
+Variable declaration In Scala there are two ways to declare a variable, with the keywords val and var.">
+    <meta name="keywords" content="blog,developer,personal">
+
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Intro to Scala for Java Programmers: Part 1"/>
+<meta name="twitter:description" content="The goal of this article series is to introduce Scala to people who know how to program in Java, and want a fast introduction to the Scala language in order to be capable of reading (simple) Scala code and of course, understanding it. In part 1 we focus on the most basic constructs like variable declarations, control structures, function definitions.
+Variable declaration In Scala there are two ways to declare a variable, with the keywords val and var."/>
+
+    <meta property="og:title" content="Intro to Scala for Java Programmers: Part 1" />
+<meta property="og:description" content="The goal of this article series is to introduce Scala to people who know how to program in Java, and want a fast introduction to the Scala language in order to be capable of reading (simple) Scala code and of course, understanding it. In part 1 we focus on the most basic constructs like variable declarations, control structures, function definitions.
+Variable declaration In Scala there are two ways to declare a variable, with the keywords val and var." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://edmundo.lopezbobeda.net/posts/scala-for-junior-programmers-1/" />
+<meta property="article:published_time" content="2020-09-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-09-25T00:00:00+00:00" />
+
+
+    
+      <base href="https://edmundo.lopezbobeda.net/posts/scala-for-junior-programmers-1/">
+    
+    <title>
+  Intro to Scala for Java Programmers: Part 1 · mundacho&#39;s website
+</title>
+
+    
+      <link rel="canonical" href="https://edmundo.lopezbobeda.net/posts/scala-for-junior-programmers-1/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://edmundo.lopezbobeda.net/css/coder.min.9836c03fe5c87d102278a33e86d0591ef36c89b1e17e8e547ebf84c05cee010e.css" integrity="sha256-mDbAP&#43;XIfRAieKM&#43;htBZHvNsibHhfo5Ufr&#43;EwFzuAQ4=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://edmundo.lopezbobeda.net/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://edmundo.lopezbobeda.net/img/favicon-16x16.png" sizes="16x16">
+
+    <link rel="apple-touch-icon" href="https://edmundo.lopezbobeda.net/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon"  sizes="180x180" href="https://edmundo.lopezbobeda.net/images/apple-touch-icon.png">
+
+    <meta name="generator" content="Hugo 0.75.1" />
+  </head>
+  
+  
+  
+  <body class="colorscheme-light"
+        onload=""
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://edmundo.lopezbobeda.net/">
+      mundacho&#39;s website
+    </a>
+    
+      <span id="dark-mode-toggle" class="float-right">
+        <i class="fas fa-adjust fa-fw"></i>
+      </span>
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fas fa-bars fa-fw"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://edmundo.lopezbobeda.net/posts/">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://edmundo.lopezbobeda.net/about/">About</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="https://edmundo.lopezbobeda.net/projects/">Projects</a>
+            </li>
+          
+        
+        
+        <li class="navigation-item separator">
+          <span>|</span>
+        </li>
+      </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Intro to Scala for Java Programmers: Part 1</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-09-25T00:00:00Z'>
+                September 25, 2020
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              8-minute read
+            </span>
+          </div>
+          
+          
+        </div>
+      </header>
+
+      <div>
+        
+        <p>The goal of this article series is to introduce Scala to people who know how to program in Java,
+and want a fast introduction to the Scala language in order to be capable of
+reading (simple) Scala code and of course, understanding it. In part 1 we focus
+on the most basic constructs like variable declarations, control structures, function definitions.</p>
+<h2 id="variable-declaration">Variable declaration</h2>
+<p>In Scala there are two ways to declare a variable, with the keywords <code>val</code> and <code>var</code>.</p>
+<p>For example, we can declare the variable <code>toto0</code> like this:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#fff;font-weight:bold">val</span> toto0 <span style="color:#fff;font-weight:bold">=</span> <span style="color:#ff0;font-weight:bold">1</span>
+</code></pre></div><p>Or like this:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#fff;font-weight:bold">var</span> toto1 <span style="color:#fff;font-weight:bold">=</span> <span style="color:#ff0;font-weight:bold">1</span>
+</code></pre></div><p>In both cases we are declaring a variable of type <code>Int</code>. The difference between
+both declarations is that the <code>val</code> declaration declares a constant,
+<em>i.e.</em> the variable cannot be reassigned after its initial definition. On the
+other hand, the <code>var</code> variable can be reassigned a new value.</p>
+<p>If you come from Java, the same declarations in Java would be like this:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#007f7f">// val toto0 = 1
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">final</span> <span style="color:#fff;font-weight:bold">int</span> toto0 = 1;
+<span style="color:#007f7f">// var toto1 = 1
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">int</span> toto0 = 1;
+</code></pre></div><h3 id="typing-in-scala">Typing in Scala</h3>
+<p>If you come from Java and other strongly typed languages, you might have noticed that
+Scala variable declarations lack a type. However, there is actually a type, but
+it is inferred by the compiler. Scala has type inference, this is, the compiler
+will try to infer the type of the variable and you don&rsquo;t have to type it (most
+of the time.</p>
+<p>Of course, there are times when the compiler cannot infer the type or sometimes
+you just want to have the type explicitly to make things clear to the readers of
+the code. For this purpose Scala has the <code>:</code> (colon). The colon is pronounced &ldquo;is
+of type&rdquo;. Let us look at some examples:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#007f7f">// we can define our same variable but specifying the type
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">val</span> toto0<span style="color:#fff;font-weight:bold">:</span> <span style="color:#fff;font-weight:bold">Int</span> = <span style="color:#ff0;font-weight:bold">1</span>
+</code></pre></div><p>The aforementioned code is read as &ldquo;constant <code>toto0</code> is of type integer and has
+assigned value 1&rdquo;.</p>
+<p>Contrary to some other languages once a variable has a certain type, it stays
+with that type for the rest of its existence.</p>
+<h2 id="predefined-operations-and-types">Predefined Operations and Types</h2>
+<p>Scala comes with a standard library containing common types and operations. To
+simplify, we present the different Scala types together with their Java
+counterparts:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Java</th>
+<th style="text-align:center">Scala</th>
+<th style="text-align:center">Scala Example</th>
+<th style="text-align:center">Possible values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">byte</td>
+<td style="text-align:center">Byte</td>
+<td style="text-align:center"><code>val b: Byte = 1</code></td>
+<td style="text-align:center">$-2^7$ to $2^7 - 1$</td>
+</tr>
+<tr>
+<td style="text-align:center">short</td>
+<td style="text-align:center">Short</td>
+<td style="text-align:center"><code>val s: Short = 1</code></td>
+<td style="text-align:center">$-2^{15}$ to $2^{15} - 1$</td>
+</tr>
+<tr>
+<td style="text-align:center">char</td>
+<td style="text-align:center">Char</td>
+<td style="text-align:center"><code>val c = 'c'</code></td>
+<td style="text-align:center">All Unicode characters.</td>
+</tr>
+<tr>
+<td style="text-align:center">int</td>
+<td style="text-align:center">Int</td>
+<td style="text-align:center"><code>val i = 1</code></td>
+<td style="text-align:center">$-2^{31}$ to $2^{31} - 1$</td>
+</tr>
+<tr>
+<td style="text-align:center">long</td>
+<td style="text-align:center">Long</td>
+<td style="text-align:center"><code>val l = 1L</code></td>
+<td style="text-align:center">$-2^{63}$ to $2^{63} - 1$</td>
+</tr>
+<tr>
+<td style="text-align:center">float</td>
+<td style="text-align:center">Float</td>
+<td style="text-align:center"><code>val f = 1.5f</code></td>
+<td style="text-align:center">All IEEE 754 32 bit single precision floating point values</td>
+</tr>
+<tr>
+<td style="text-align:center">double</td>
+<td style="text-align:center">Double</td>
+<td style="text-align:center"><code>val d = 1.5</code></td>
+<td style="text-align:center">All IEEE 754 64 bit double precision floating point values</td>
+</tr>
+<tr>
+<td style="text-align:center">boolean</td>
+<td style="text-align:center">Boolean</td>
+<td style="text-align:center"><code>val b = true</code></td>
+<td style="text-align:center">$\lbrace$ <code>true</code>, <code>false</code> $\rbrace$</td>
+</tr>
+<tr>
+<td style="text-align:center">void</td>
+<td style="text-align:center">Unit</td>
+<td style="text-align:center"><code>val u = ()</code></td>
+<td style="text-align:center">$\lbrace$ <code>()</code> $\rbrace$</td>
+</tr>
+</tbody>
+</table>
+<p>Table 1: List of Scala Value Types</p>
+<p>The one type that deserves an explanation is the <code>Unit</code> type. The unit type only
+has one possible value, written as <code>()</code>. It is used as the return type for
+<a href="https://en.wikipedia.org/wiki/Subroutine">subroutines</a> that do not return a
+value. For example, when we call <code>println</code> to print a line in Scala it returns a
+unit type, we can see an example here:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#fff;font-weight:bold">val</span> r <span style="color:#fff;font-weight:bold">=</span> println(<span style="color:#0ff;font-weight:bold">&#34;Hello!&#34;</span>)
+</code></pre></div><p>By using the unit type, Scala guarantees that all
+<a href="https://en.wikipedia.org/wiki/Subroutine">subroutines</a> are functions, <em>i.e.</em>
+they always return a value.</p>
+<blockquote>
+<p><strong>Exercise</strong></p>
+<p>Create an integer variable, a long variable, and then a new variable that
+contains the result of adding both previous variables. What is the type of the
+new variable?</p>
+</blockquote>
+<h3 id="basic-operations">Basic Operations</h3>
+<p>The standard numeric data types supported by Scala that we previously shown
+support the usual arithmetic operations that we expect them to. Scala supports
+all the following operations between numeric types (<code>byte</code>, <code>short</code>, <code>int</code>,
+<code>long</code>, <code>float</code>, <code>double</code>): <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, and <code>%</code>. The <code>%</code> is the modulus
+operator, used as follows <code>a % b</code> and returns the remainder of dividing <code>a</code> by
+<code>b</code>, for example <code>10 % 3</code> is equal to <code>1</code>.</p>
+<p>The following relational operators <code>==</code>, <code>!=</code> (not equal), <code>&gt;</code>, <code>&gt;=</code> (greater or equal),
+<code>&lt;</code>, <code>&lt;=</code> (less or equal) are also supported by Scala with their usual semantics
+for numeric types. Contrary to Java, the <code>==</code> operator actually calls the equals
+method when applied to two objects that are not numerical. To have the same
+semantics as Java <code>==</code> and <code>!=</code> we need to use the <code>eq</code> and <code>ne</code> operators
+respectively.</p>
+<p>For Boolean data types Scala supports the classical logical operators <code>&amp;&amp;</code>
+(logical and), <code>||</code> (logical or), and <code>!</code> (logical negation) that return a
+Boolean value depending on the result of the comparison.</p>
+<p>In addition to that, in the same style as Java, Scala supports the assignment
+and operation combination, that allows to apply and operation and the assign the
+value to a variable in one compact operation. The operators supported are <code>+=</code>
+(add and assign), <code>-=</code> (subtract and assign), <code>*=</code> (multiply and assign), <code>/=</code>
+and assign, <code>/=</code> (divide and assign), and <code>%=</code> (modulus and assign). F</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#fff;font-weight:bold">var</span> x <span style="color:#fff;font-weight:bold">=</span> <span style="color:#ff0;font-weight:bold">5</span>
+x += <span style="color:#ff0;font-weight:bold">2</span>
+<span style="color:#007f7f">// x = 7
+</span><span style="color:#007f7f"></span><span style="color:#fff;font-weight:bold">var</span> y <span style="color:#fff;font-weight:bold">=</span> <span style="color:#ff0;font-weight:bold">10</span>
+y %= <span style="color:#ff0;font-weight:bold">3</span>
+<span style="color:#007f7f">// y = 1
+</span></code></pre></div><h2 id="control-structures">Control Structures</h2>
+<p>Scala provides the standard control structures usually found in other languages.
+Here we focus on the ones that are shared with Java, highlighting Scala&rsquo;s
+particularities.</p>
+<p>The fundamental building block for control is the well known <code>if-else</code>
+statement. In Scala, the particularity of the <code>if-else</code> statement is that it is
+a function, <em>i.e.</em> it returns a value. Let us consider the following example</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#fff;font-weight:bold">val</span> a <span style="color:#fff;font-weight:bold">=</span> <span style="color:#ff0;font-weight:bold">5</span>
+<span style="color:#fff;font-weight:bold">if</span> (a &gt; <span style="color:#ff0;font-weight:bold">1</span>) <span style="color:#ff0;font-weight:bold">4</span> <span style="color:#fff;font-weight:bold">else</span> <span style="color:#ff0;font-weight:bold">1</span>
+</code></pre></div><p>The statement above returns an actual value, the value 4 (since <code>a &gt; 1</code>). This
+means that, in Scala we can assign an <code>if</code>-block to a variable or use it where
+we would expect some value. For example:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#fff;font-weight:bold">val</span> a <span style="color:#fff;font-weight:bold">=</span> <span style="color:#ff0;font-weight:bold">5</span>
+<span style="color:#fff;font-weight:bold">val</span> b <span style="color:#fff;font-weight:bold">=</span> <span style="color:#fff;font-weight:bold">if</span> (a &gt; <span style="color:#ff0;font-weight:bold">1</span>) <span style="color:#ff0;font-weight:bold">4</span> <span style="color:#fff;font-weight:bold">else</span> <span style="color:#ff0;font-weight:bold">1</span>
+<span style="color:#007f7f">// b = 4
+</span></code></pre></div><p>The question that you might be asking is &ldquo;What happens when there is no
+<code>else</code>?&rdquo;, what is returned then? The answer is simple, the unit value. Let us
+consider the following code:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#fff;font-weight:bold">val</span> x <span style="color:#fff;font-weight:bold">=</span> <span style="color:#fff;font-weight:bold">if</span> (<span style="color:#fff;font-weight:bold">false</span>) <span style="color:#ff0;font-weight:bold">5</span>
+<span style="color:#007f7f">// x: AnyVal = ()
+</span></code></pre></div><p>As you can see, after the execution variable <code>x</code> contains the value <code>()</code>, but
+the type of <code>x</code> is <code>AnyVal</code>, a type that is the super type of all types listed
+in Table 1. Hence, we can see that the compiler inferred the return type of the
+<code>if</code> expression as <code>AnyVal</code>.</p>
+<p>Scala also support classic loop instructions such as <code>while</code>, <code>do-while</code>, and
+<code>for</code>. The <code>while</code> and <code>do-while</code> work exactly as expected. Let us consider the
+following loop:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#fff;font-weight:bold">var</span> x <span style="color:#fff;font-weight:bold">=</span> <span style="color:#ff0;font-weight:bold">3</span>
+<span style="color:#fff;font-weight:bold">while</span> (x &gt; <span style="color:#ff0;font-weight:bold">0</span>) {
+  println(x)
+  x<span style="color:#fff;font-weight:bold">=</span>x-<span style="color:#ff0;font-weight:bold">1</span>
+}
+</code></pre></div><p>This loop will print all numbers from 3 to 1. We can do the exact same loop
+using the <code>do-while</code> construct:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#fff;font-weight:bold">var</span> x <span style="color:#fff;font-weight:bold">=</span> <span style="color:#ff0;font-weight:bold">3</span>
+<span style="color:#fff;font-weight:bold">do</span> {
+  println(x)
+  x -= <span style="color:#ff0;font-weight:bold">1</span>
+} <span style="color:#fff;font-weight:bold">while</span> (x &gt; <span style="color:#ff0;font-weight:bold">0</span>)
+</code></pre></div><p>Following the Scala convention, both of these operations return a value, the
+unit value <code>()</code>.</p>
+<h2 id="function-definitions">Function Definitions</h2>
+<p>The definition of a function in Scala is done with the <code>def</code>
+keyword, followed by the function name, the list of arguments, the <code>=</code> sign and
+the actual function body. A simple Scala function looks like this:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#fff;font-weight:bold">def</span> add(x<span style="color:#fff;font-weight:bold">:</span> <span style="color:#fff;font-weight:bold">Int</span>, y<span style="color:#fff;font-weight:bold">:</span> <span style="color:#fff;font-weight:bold">Int</span>) <span style="color:#fff;font-weight:bold">=</span> x + y
+</code></pre></div><blockquote>
+<p><strong>Exercise</strong></p>
+<p>Implement the function <code>compare</code> that compares to integers x and y, and
+returns -1 if x &lt; y, 0 if they are equal, 1 if x &gt; y.</p>
+</blockquote>
+<p>Here we can find the colon that we already met in the last section. It is there
+to inform the compiler that <code>x</code> and <code>y</code> are parameters of type <code>Int</code>. Of course,
+we can do more complex functions using Scala. For example, we can have a block
+of statements with variable definitions, function calls, and everything that you
+can have in other common programming languages, the syntax for that is the
+following:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#fff;font-weight:bold">def</span> complexFct(x<span style="color:#fff;font-weight:bold">:</span> <span style="color:#fff;font-weight:bold">Int</span>, y<span style="color:#fff;font-weight:bold">:</span> <span style="color:#fff;font-weight:bold">Int</span>) <span style="color:#fff;font-weight:bold">=</span> {
+  <span style="color:#fff;font-weight:bold">val</span> operand1 <span style="color:#fff;font-weight:bold">=</span> x
+  <span style="color:#fff;font-weight:bold">val</span> operand2 <span style="color:#fff;font-weight:bold">=</span> y
+  operand1 + operand2
+}
+</code></pre></div><p>You might have noticed that the function does not have a return type, like you
+would have in other languages. Like variable definitions, function return types
+are inferred by the compiler, thus you (usually) don&rsquo;t need to tell the compiler
+the return type of a function. A notable exception for this are recursive
+functions, which always require the programmer to properly specify the return
+type, let us look at an example for the factorial function $n! = n \cdot (n - 1)
+\cdots 2 \cdot 1$. This function is easily defined in Scala as:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scala" data-lang="scala"><span style="color:#fff;font-weight:bold">def</span> fact(n<span style="color:#fff;font-weight:bold">:</span> <span style="color:#fff;font-weight:bold">Int</span>)<span style="color:#fff;font-weight:bold">:</span> <span style="color:#fff;font-weight:bold">Int</span> = <span style="color:#fff;font-weight:bold">if</span> (n &gt; <span style="color:#ff0;font-weight:bold">1</span>) n * fact(n - <span style="color:#ff0;font-weight:bold">1</span>) <span style="color:#fff;font-weight:bold">else</span> <span style="color:#ff0;font-weight:bold">1</span>
+</code></pre></div><h2 id="conclusion">Conclusion</h2>
+<p>We have seen the basics of the Scala language. Using the knowledge we have we
+can write simple programs by using scalar types, simple arithmetic operations
+and function definitions.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>For the ranges of the different data types in Scala you can check out the
+<a href="https://www.scala-lang.org/files/archive/spec/2.13/01-lexical-syntax.html">lexical syntax</a>
+specification of the language.</li>
+</ul>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "mundacho" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        
+      </footer>
+    </article>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js" id="MathJax-script"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ['$', '$'], ['\\(', '\\)']
+        ],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+        <p>(c) Edmundo López Bóbeda.</p>
+      
+      
+        ©
+        
+        2020
+         Edmundo López Bóbeda 
+      
+      
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+      
+      <script src="https://edmundo.lopezbobeda.net/js/dark-mode.min.0213e1773e6d1c5a644f847c67a6f8abac49a3776e2976f6008038af8c5b76a1.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+  </body>
+
+</html>
